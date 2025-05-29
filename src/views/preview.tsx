@@ -121,6 +121,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({ postContent, commits: 
         <div style={{ flex: 2, minWidth: 0 }}>
           <div style={{ marginBottom: 12 }}>
             <button
+              id="select-all-btn"
               onClick={() => handleSelectAll(true)}
               style={{
                 backgroundColor: '#10b981', color: 'white', border: 'none', padding: '8px 18px', borderRadius: '8px', fontSize: '13px', cursor: 'pointer', marginRight: 8
@@ -129,6 +130,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({ postContent, commits: 
               Select All
             </button>
             <button
+              id="deselect-all-btn"
               onClick={() => handleSelectAll(false)}
               style={{
                 backgroundColor: '#e5e7eb', color: '#374151', border: 'none', padding: '8px 18px', borderRadius: '8px', fontSize: '13px', cursor: 'pointer'
@@ -150,6 +152,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({ postContent, commits: 
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ margin: '24px 0' }}>
             <button
+              id="generate-summary-btn"
               onClick={handleGenerateSummary}
               disabled={summaryLoading || !anySelected}
               style={{
@@ -167,23 +170,22 @@ const Preview: React.FunctionComponent<PreviewProps> = ({ postContent, commits: 
             >
               {summaryLoading ? 'Generating Summary...' : 'Generate AI Summary from Selected Commits'}
             </button>
-            {summaryError && <div style={{ color: 'red', marginTop: 8 }}>{summaryError}</div>}
-            {summary && (
-              <div style={{
-                background: '#fff',
-                border: '1px solid #e5e7eb',
-                borderRadius: '12px',
-                padding: '24px',
-                marginTop: '16px',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                whiteSpace: 'pre-line',
-                fontSize: '1.1em',
-                color: '#374151'
-              }}>
-                <b>AI Summary:</b>
-                <div style={{ marginTop: 12 }}>{summary}</div>
-              </div>
-            )}
+            <div id="summary-error" style={{ color: 'red', marginTop: 8, display: summaryError ? 'block' : 'none' }}>{summaryError}</div>
+            <div id="summary-display" style={{
+              background: '#fff',
+              border: '1px solid #e5e7eb',
+              borderRadius: '12px',
+              padding: '24px',
+              marginTop: '16px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+              whiteSpace: 'pre-line',
+              fontSize: '1.1em',
+              color: '#374151',
+              display: summary ? 'block' : 'none'
+            }}>
+              <b>AI Summary:</b>
+              <div style={{ marginTop: 12 }}>{summary}</div>
+            </div>
           </div>
         </div>
       </div>

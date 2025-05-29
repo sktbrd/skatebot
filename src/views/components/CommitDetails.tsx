@@ -90,12 +90,10 @@ const CommitDetails: React.FC<CommitDetailsProps> = ({ commits, showCommitDetail
                           type="checkbox"
                           id={`commit-checkbox-${repo.replace(/[^a-zA-Z0-9]/g, '_')}-${index}`}
                           name={`commit-checkbox-${repo.replace(/[^a-zA-Z0-9]/g, '_')}-${index}`}
+                          data-commit-key={commitKey}
                           checked={!!selectedCommits[commitKey]}
                           onChange={e => {
                             e.stopPropagation();
-                            if (typeof window !== 'undefined') {
-                              window.alert(`[DEBUG] Commit checkbox changed: repo=${repo}, index=${index}, checked=${e.target.checked}`);
-                            }
                             onSelectCommit(repo, index, e.target.checked);
                           }}
                           style={{ marginTop: 6 }}
